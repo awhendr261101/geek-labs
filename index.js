@@ -1,5 +1,5 @@
-import { userRouter, express } from './controller/UserController.js'
-import { productRouter } from './controller/BookingsController.js'
+import { userRouter, express } from './controller/userController.js'
+import { bookingsRouter } from './controller/bookingsController.js'
 import cors from 'cors'
 import path from 'path'
 
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 
 
 app.use('/users', userRouter)
-app.use('/Bookings', productRouter)
+app.use('/Bookings', bookingsRouter)
 app.use(
     express.static('./static'),
     express.json(),
