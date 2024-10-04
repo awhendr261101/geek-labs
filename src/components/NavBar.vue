@@ -15,7 +15,7 @@
               <li class="nav-item">
                 <router-link class="nav-link" to="/about" exact-active-class="active">About</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-show="user?.userRole?.toLowerCase() == 'tutor'">
                 <router-link class="nav-link" to="/sessions" exact-active-class="active">Sessions</router-link>
               </li>
               <li class="nav-item">
@@ -51,6 +51,29 @@
       </nav>
     
 </template>
+
+<script setup>
+import router from '@/router';
+import store from '@/store';
+import { computed, onMounted } from 'vue';
+import { useCookies } from 'vue3-cookies';
+const { cookies } = useCookies()
+
+const user = computed(() => store.state.user )
+
+console.log(user);
+
+onMounted(() => {
+  if (!cookies.get('VerifiedUser')) {
+    router.push({name : 'login'})
+  } else {
+    store.dispatch('fetchUser',  cookies.get('LegitUser')?.result?.userID )
+  }
+
+} )
+
+
+</script>
 
 <style scoped>
   .navbar {

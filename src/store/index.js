@@ -52,11 +52,11 @@ export default createStore({
     // ==== User ========
     async fetchUsers(context) {
       try {
-        const { results, msg } = await (await axios.get(`${apiURL}users`)).data
+        const { results } = await (await axios.get(`${apiURL}users`)).data
         if (results) {
           context.commit('setUsers', results)
         } else {
-          toast.error(`${msg}`, {
+          toast.error(`Ooops something went wrong`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
@@ -70,7 +70,12 @@ export default createStore({
     },
     async fetchUser(context, id) {
       try {
+        if (!id) {
+          router.push({name : 'login'})
+          return
+        }
         const result = await (await axios.get(`${apiURL}users/${id}`)).data
+
         const msg = 'Ooops'
         if (result) {
           context.commit('setUser', result)
@@ -81,19 +86,22 @@ export default createStore({
           })
         }
       } catch (e) {
+
         toast.error(`${e.message}`, {
           autoClose: 2000,
           position: toast.POSITION.BOTTOM_CENTER
         })
+
+
       }
     },
 
     async register(context, payload) {
       try {
-        const { msg, err, token } = await (await axios.post(`${apiURL}user/register`, payload)).data
+        const { message, err, token } = await (await axios.post(`${apiURL}user/register`, payload)).data
         if (token) {
           context.dispatch('fetchUsers')
-          toast.success(`${msg}`, {
+          toast.success(`${message}`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
@@ -143,10 +151,10 @@ export default createStore({
 
     async tutorRegister(context, payload) {
       try {
-        const { msg, err, token } = await (await axios.post(`${apiURL}tutors/register`, payload)).data
+        const { message, err, token } = await (await axios.post(`${apiURL}tutors/register`, payload)).data
         if (token) {
           context.dispatch('fetchUsers')
-          toast.success(`${msg}`, {
+          toast.success(`${message}`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
@@ -206,18 +214,18 @@ export default createStore({
     // ===== LOGIN =======
     async login(context, payload) {
       try {
-        const { msg, result, token } = await (await axios.post(`${apiURL}users/login`, payload)).data
+        const { message, msg, result, token } = await (await axios.post(`${apiURL}users/login`, payload)).data
 
         if (result) {
-          toast.success(`${msg}😎`, {
+          toast.success(`${message}😎`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
           context.commit('setUser', {
-            msg,
+            message,
             result
           })
-          cookies.set('LegitUser', { token, msg, result })
+          cookies.set('LegitUser', { token, message, result })
           applyToken(token)
 
           router.push({ name: 'profile' })

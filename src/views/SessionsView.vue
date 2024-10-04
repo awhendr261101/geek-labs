@@ -106,18 +106,25 @@
 </template>
 <script setup>
 
+import router from '@/router';
 import store from '@/store';
 import { computed, onMounted } from 'vue';
+import { useCookies } from 'vue3-cookies';
+const { cookies } = useCookies()
 
+const user = computed(() => store.state.user)
+const session = computed(() => store.state.sessions)
 
-const sessions = computed(() => store.state.sessions)
-
-console.log(sessions);
-
+console.log(user, session);
 
 onMounted(() => {
-    store.dispatch('')
-})
+  if (!cookies.get('VerifiedUser')) {
+    router.push({name : 'login'})
+  } else {
+    store.dispatch('fetchUser',  cookies.get('LegitUser')?.result?.userID )
+  }
+
+} )
 
 </script>
 

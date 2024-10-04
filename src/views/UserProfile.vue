@@ -137,7 +137,7 @@ const user = computed(() => store.state.user)
 console.log(user, ref);
 
 onMounted(() => {
-    store.dispatch('fetchUser', cookies.get('LegitUser').result.userID)
+    store.dispatch('fetchUser', cookies.get('LegitUser')?.result?.userID)
 })
 
 
