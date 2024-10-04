@@ -91,6 +91,7 @@
   <style scoped>
   .lectures-page {
     padding: 20px;
+    background-color: #02141B;
   }
   
   .lectures {

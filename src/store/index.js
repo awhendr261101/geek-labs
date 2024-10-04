@@ -140,7 +140,7 @@ export default createStore({
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
-          
+
           router.push({ name: 'login' })
         } else {
           toast.error(`${err}`, {

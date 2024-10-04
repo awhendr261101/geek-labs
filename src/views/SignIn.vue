@@ -22,7 +22,6 @@
   
   <script setup>
   import { ref } from 'vue';
-  import axios from 'axios';
   import store from '@/store';
   
   const form = ref({
@@ -35,9 +34,7 @@
   async function submitForm() {
     try {
       console.log({...form.value});
-      // Make a POST request to your backend for login
-      await axios.post('/api/login', form.value);
-      store.dispatch(''); // Dispatch an action if needed after login
+      store.dispatch('login', {...form.value}); 
     } catch (err) {
       error.value = err.response?.data?.err || 'Invalid credentials';
       console.error(err);

@@ -104,7 +104,17 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
+import { ref } from 'vue';
+// import axios from 'axios';
+import store from '@/store';
+
+console.log(store, ref);
+
+
+
+
+
 
 </script>
 
