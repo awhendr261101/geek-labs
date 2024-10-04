@@ -8,6 +8,7 @@ import SignUp from '@/views/SignUp.vue'
 import RegisterTutor from '@/views/RegisterTutor.vue'
 import SignIn from '@/views/SignIn.vue';
 import AdminView from '@/views/AdminView.vue';
+import UserProfile from '@/views/UserProfile.vue';
 
 
 const routes = [
@@ -45,7 +46,7 @@ const routes = [
   },
 
   {
-    path : '/signin',
+    path : '/login',
     name : 'login' ,
     component : SignIn
   },
@@ -60,6 +61,12 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminView,
+  },
+
+  {
+    path: '/profile',
+    name: 'profile',
+    component: UserProfile,
   }
   
 

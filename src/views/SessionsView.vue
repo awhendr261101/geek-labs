@@ -104,7 +104,20 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
+
+import store from '@/store';
+import { computed, onMounted } from 'vue';
+
+
+const sessions = computed(() => store.state.sessions)
+
+console.log(sessions);
+
+
+onMounted(() => {
+    store.dispatch('')
+})
 
 </script>
 

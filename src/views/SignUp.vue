@@ -93,6 +93,7 @@ console.log(axios)
 
       try {
         console.log({...form.value})
+        
         store.dispatch("tuteeRegister", {...form.value})
         
       } catch (err) {

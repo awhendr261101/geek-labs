@@ -17,7 +17,8 @@ export default createStore({
     tutees: null,
     tutors: null,
     sessions: null,
-    bookings: null
+    bookings: null,
+    tutorsBookings : null
 
   },
   getters: {
@@ -40,6 +41,10 @@ export default createStore({
     },
     setBookings(state, value) {
       state.bookings = value
+    },
+
+    tutorsBookings(state, value) {
+      state.tutorsBookings = value
     },
 
   },
@@ -65,7 +70,8 @@ export default createStore({
     },
     async fetchUser(context, id) {
       try {
-        const { result, msg } = await (await axios.get(`${apiURL}users/${id}`)).data
+        const result = await (await axios.get(`${apiURL}users/${id}`)).data
+        const msg = 'Ooops'
         if (result) {
           context.commit('setUser', result)
         } else {
@@ -109,13 +115,17 @@ export default createStore({
     async tuteeRegister(context, payload) {
       
       try {
-        const { msg, err, token } = await (await axios.post(`${apiURL}tutees/register`, payload)).data
+        const { message, err, token } = await (await axios.post(`${apiURL}tutees/register`, payload)).data
+
+        console.log('this');
+        
         if (token) {
           context.dispatch('fetchUsers')
-          toast.success(`${msg}`, {
+          toast.success(`${message}`, {
             autoClose: 2000,
             position: toast.POSITION.BOTTOM_CENTER
           })
+
           router.push({ name: 'login' })
         } else {
           toast.error(`${err}`, {
@@ -209,7 +219,8 @@ export default createStore({
           })
           cookies.set('LegitUser', { token, msg, result })
           applyToken(token)
-          router.push({ name: 'products' })
+
+          router.push({ name: 'profile' })
         } else {
           toast.error(`${msg}`, {
             autoClose: 2000,
@@ -241,11 +252,11 @@ export default createStore({
       }
 
     },
-    async recentProducts(context) {
+    async TutorsBookings(context) {
       try {
-        const { results, msg } = await (await axios.get(`${apiURL}product/recent`)).data
+        const { results, msg } = await (await axios.get(`${apiURL}bookings/:id`)).data
         if (results) {
-          context.commit('setRecentProducts', results)
+          context.commit('tutorsBookings', results)
         } else {
           toast.error(`${msg}`, {
             autoClose: 2000,

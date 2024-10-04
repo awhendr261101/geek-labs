@@ -25,7 +25,7 @@
                 <router-link class="nav-link" to="/admin" exact-active-class="active">Admin</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/signin" exact-active-class="active">Login</router-link>
+                <router-link class="nav-link" to="/login" exact-active-class="active">Login</router-link>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +35,7 @@
                 <router-link class="nav-link" to="/tuteesignup" exact-active-class="active" drop>Tutee</router-link>
                 <router-link class="nav-link" to="/tutorsignup" exact-active-class="active" drop>Tutor</router-link>
                   <div class="dropdown-divider"></div>
-                  <router-link class="nav-link" to="/signin" exact-active-class="active" drop>Login</router-link>
+                  <router-link class="nav-link" to="/login" exact-active-class="active" drop>Login</router-link>
                 </div>
               </li>
               <li class="nav-item" thirdiv>
