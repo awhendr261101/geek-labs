@@ -48,7 +48,7 @@ class Tutee {
                     const token = createToken(user)
                     res.status(200).json({
                         statusCode: 200,
-                        message: 'User registered successfully',
+                        msg: 'User registered successfully',
                         token
                     })
                 } 

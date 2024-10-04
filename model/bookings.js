@@ -4,7 +4,7 @@ class Bookings {
     static fetchBookings(req, res) {
         try {
             const strQry = `
-            SELECT * FROM Everything;
+            SELECT * FROM bookings;
             `
             db.query(strQry, (err, results) => {
                 if (err) throw new Error('Unable to fetch all bookings ')
@@ -24,7 +24,7 @@ class Bookings {
     static fetchBooking(req, res) {
         try {
             const strQry = `
-            SELECT * FROM Everything WHERE tutorID = ${req.params.id};
+            SELECT * FROM bookings WHERE tutorID = ${req.params.id};
             `
             db.query(strQry, (err, results) => {
                 if (err) throw new Error('Unable to fetch all bookings ')

@@ -12,7 +12,9 @@ bookingsRouter.get('/', (req, res) => {
 })
 
 bookingsRouter.get('/:id', (req, res) => {
-    Bookings.fetchBookings(req, res)
+    console.log('here');
+    
+    Bookings.fetchBooking(req, res)
 })
 
 bookingsRouter.post('/add', (req, res) => {
